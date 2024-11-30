@@ -8,7 +8,7 @@ project "glfw"
 
 	files
 	{
-		"include/GLFW/glfw3.h",
+	"include/GLFW/glfw3.h",
     	"include/GLFW/glfw3native.h",
     	"src/internal.h",
     	"src/platform.h",
@@ -87,5 +87,5 @@ project "glfw"
 
 	filter "configurations:Release"
 		runtime "Release"
-		optimize "on"
+		optimize "speed"
 		symbols "off"

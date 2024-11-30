@@ -406,6 +406,7 @@ struct _GLFWwndconfig
     GLFWbool      resizable;
     GLFWbool      visible;
     GLFWbool      decorated;
+    GLFWbool      titlebar;
     GLFWbool      focused;
     GLFWbool      autoIconify;
     GLFWbool      floating;
@@ -534,6 +535,7 @@ struct _GLFWwindow
     // Window settings and state
     GLFWbool            resizable;
     GLFWbool            decorated;
+    GLFWbool            titlebar;
     GLFWbool            autoIconify;
     GLFWbool            floating;
     GLFWbool            focusOnShow;
@@ -565,6 +567,7 @@ struct _GLFWwindow
 
     struct {
         GLFWwindowposfun          pos;
+        GLFWtitlebarhittestfun    tbhittest;
         GLFWwindowsizefun         size;
         GLFWwindowclosefun        close;
         GLFWwindowrefreshfun      refresh;
@@ -744,6 +747,7 @@ struct _GLFWplatform
     float (*getWindowOpacity)(_GLFWwindow*);
     void (*setWindowResizable)(_GLFWwindow*,GLFWbool);
     void (*setWindowDecorated)(_GLFWwindow*,GLFWbool);
+    void (*setWindowTitlebar)(_GLFWwindow*,GLFWbool);
     void (*setWindowFloating)(_GLFWwindow*,GLFWbool);
     void (*setWindowOpacity)(_GLFWwindow*,float);
     void (*setWindowMousePassthrough)(_GLFWwindow*,GLFWbool);
@@ -921,6 +925,7 @@ GLFWproc _glfwPlatformGetModuleSymbol(void* module, const char* name);
 void _glfwInputWindowFocus(_GLFWwindow* window, GLFWbool focused);
 void _glfwInputWindowPos(_GLFWwindow* window, int xpos, int ypos);
 void _glfwInputWindowSize(_GLFWwindow* window, int width, int height);
+void _glfwInputTitleBarHitTest(_GLFWwindow* window, int posX, int posY, int* hit);
 void _glfwInputFramebufferSize(_GLFWwindow* window, int width, int height);
 void _glfwInputWindowContentScale(_GLFWwindow* window,
                                   float xscale, float yscale);
