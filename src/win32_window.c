@@ -1074,25 +1074,9 @@ static LRESULT CALLBACK windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM l
             requestedClientRect->right -= resizeBorderX;
             requestedClientRect->left += resizeBorderX;
             requestedClientRect->bottom -= resizeBorderY;
-            //
-            // NOTE(Yan):
-            // 
-            // Top borders seem to be handled differently.
-            // 
-            // Contracting by 1 on Win 11 seems to give a small area
-            // for resizing whilst not showing a white border.
-            // 
-            // But this doesn't seem to work on Win 10, instead showing
-            // a general white titlebar on top of the custom one...
-            // to be continued.
-            // 
-            // Not changing the top (i.e. 0) means we don't see the
-            // mouse icon change to a resize handle, but resizing still
-            // works once you click and drag. This works on both
-            // Windows 10 & 11, so we'll keep that for now.
-            requestedClientRect->top += 0;
-            // NOTE(Yan): seems to make no difference what we return here,
-            //            was originally 0
+            
+            requestedClientRect->top += 1;
+
             return WVR_ALIGNTOP | WVR_ALIGNLEFT;
         }
         case WM_SIZE:
